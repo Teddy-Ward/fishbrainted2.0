@@ -9,7 +9,16 @@ export default function AuthForm() {
   return (
     <Auth
     supabaseClient={supabase}
-    appearance={{ theme: ThemeSupa }}
+    appearance={{
+      // If you want to extend the default styles instead of overriding it, set this to true
+      extend: true,
+      theme: ThemeSupa,
+      // Your custom classes
+      className: {
+        anchor: 'my-awesome-anchor',
+        button: 'button',
+      },
+    }}
     providers={[]}
 
       redirectTo="http://localhost:3000/auth/callback"

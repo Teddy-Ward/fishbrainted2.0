@@ -1,6 +1,7 @@
-'use client'
+"use client";
 import { useEffect, useState } from "react";
-import Link from 'next/link'
+import Link from "next/link";
+import ThemeSwitch from "./ThemeSwitch";
 
 const Header = () => {
   const [sticky, setSticky] = useState("");
@@ -18,38 +19,27 @@ const Header = () => {
     const scrollhrefp = window.scrollY;
     const stickyClass = scrollhrefp >= 250 ? "is-sticky" : "";
     setSticky(stickyClass);
-
   };
 
-  const classes = `header ${sticky}`;
+  const classes = `header flex flex-row ${sticky}`;
 
   // const pages = ["About", "Gallery", "PbPS", "Spooo", "MSLA", "Socials"];
   const pages = ["About", "PbPS", "Spooo", "MSLA", "Socials"];
-
 
   return (
     <>
       <header className={classes}>
         <ul>
           <li>
-            <Link href="">Home</Link>
+            <Link href="/">Home</Link>
           </li>
-          {pages.map((page) => (
-            <li>
-              <Link
-                href={page}
-
-              >
-                {page}
-              </Link>
+          {pages.map((page, i) => (
+            <li key={i}>
+              <Link href={page}>{page}</Link>
             </li>
           ))}
-          <li>
-            <Link href="https://jojo-modjo-shop.fourthwall.com/" target="_blank">
-              Shop
-            </Link>
-          </li>
         </ul>
+        <ThemeSwitch />
       </header>
     </>
   );

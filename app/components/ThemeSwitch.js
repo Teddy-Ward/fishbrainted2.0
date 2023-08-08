@@ -1,42 +1,58 @@
-'use client'
-import { useState, useEffect } from 'react'
-import { useTheme } from 'next-themes'
-import Image from 'next/image'
+"use client";
+import { useState, useEffect } from "react";
+import { useTheme } from "next-themes";
+import Image from "next/image";
 
 const ThemeSwitch = () => {
-  const [mounted, setMounted] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false);
+  const { theme, setTheme } = useTheme();
 
   // useEffect only runs on the client, so now we can safely show the UI
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+  }, []);
 
   if (!mounted) {
-    return null
+    return null;
+  }
+
+  const themebutton = () => {
+    if (theme === "light") {
+      setTheme("dark")
+    } else {
+      setTheme("light")
+    }
   }
 
   return (
     <>
-        <select value={theme} onChange={e => setTheme(e.target.value)}>
-      <option value="system">System</option>
-      <option value="dark">Dark</option>
-      <option value="light">Light</option>
-    </select>          {/* When the theme is dark, hide this div */}
-          <div data-hide-on-theme="dark">
-          {/* <Image src="light.png" width={400} height={400} /> */}
-          sun
-        </div>
-  
-        {/* When the theme is light, hide this div */}
-        <div data-hide-on-theme="light">
-          {/* <Image src="dark.png" width={400} height={400} /> */}
-          moon
-        </div>
+    <div className="absolute right-0" >
+            {/* When the theme is dark, hide this div */}
+      <div data-hide-on-theme="dark">
+        <Image
+          src="/light.png"
+          alt="light"
+          width={25}
+          height={25}
+          onClick={themebutton}
+        />
+
+      </div>
+
+      {/* When the theme is light, hide this div */}
+      <div data-hide-on-theme="light">
+        <Image
+          src="/dark.png"
+          alt="dark"
+          width={25}
+          height={25}
+          onClick={themebutton}
+        />
+      </div>
+    </div>
+
     </>
+  );
+};
 
-
-  )
-}
-
-export default ThemeSwitch
+export default ThemeSwitch;
