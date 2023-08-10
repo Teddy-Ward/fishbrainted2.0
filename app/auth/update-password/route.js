@@ -9,8 +9,12 @@ export async function GET(request) {
   if (code) {
     const supabase = createRouteHandlerClient({ cookies });
     await supabase.auth.exchangeCodeForSession(code);
+
+    return NextResponse.redirect(`${requestUrl.origin}/update-password`);
   }
 
-  // URL to redirect to after sign in process completes
-  return NextResponse.redirect(requestUrl.origin);
+  // eslint-disable-next-line no-console
+  console.error('ERROR: Invalid auth code or no auth code found');
+
+  return NextResponse.redirect(`${requestUrl.origin}/sign-in`);
 }

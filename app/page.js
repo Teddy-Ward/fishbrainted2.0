@@ -10,7 +10,6 @@ export default function Home() {
           profile and upload an avatar image. Fast, simple, secure.
         </p>
       </div>
-    <AuthForm />
     </div>
   )
 }
