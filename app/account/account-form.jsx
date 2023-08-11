@@ -2,6 +2,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Avatar from "./avatar";
+import SignOut from "../components/SignOut";
 
 export default function AccountForm({ session }) {
   const supabase = createClientComponentClient();
@@ -65,7 +66,7 @@ export default function AccountForm({ session }) {
   }
 
   return (
-    <div className="form-widget">
+    <div className="flex flex-col items-center gap-4 mt-10">
       <Avatar
         uid={user.id}
         url={avatar_url}
@@ -77,12 +78,18 @@ export default function AccountForm({ session }) {
       />
       <div>
         <label htmlFor="email">Email</label>
-        <input id="email" type="text" value={session?.user.email} disabled />
+        <input 
+          id="email" 
+          className="input text-center block mx-auto"
+          type="text" 
+          value={session?.user.email} 
+          disabled />
       </div>
       <div>
         <label htmlFor="fullName">Full Name</label>
         <input
           id="fullName"
+          className="input text-center block mx-auto"
           type="text"
           value={fullname || ""}
           onChange={(e) => setFullname(e.target.value)}
@@ -92,6 +99,7 @@ export default function AccountForm({ session }) {
         <label htmlFor="username">Username</label>
         <input
           id="username"
+          className="input text-center block mx-auto"
           type="text"
           value={username || ""}
           onChange={(e) => setUsername(e.target.value)}
@@ -101,6 +109,7 @@ export default function AccountForm({ session }) {
         <label htmlFor="website">Website</label>
         <input
           id="website"
+          className="input text-center block mx-auto"
           type="url"
           value={website || ""}
           onChange={(e) => setWebsite(e.target.value)}
@@ -109,7 +118,7 @@ export default function AccountForm({ session }) {
 
       <div>
         <button
-          className="button primary block"
+          className="button primary"
           onClick={() =>
             updateProfile({ fullname, username, website, avatar_url })
           }
@@ -120,11 +129,7 @@ export default function AccountForm({ session }) {
       </div>
 
       <div>
-        <form action="/auth/signout" method="post">
-          <button className="button block" type="submit">
-            Sign out
-          </button>
-        </form>
+          <SignOut />
       </div>
     </div>
   );
