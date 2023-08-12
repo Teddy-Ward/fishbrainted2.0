@@ -16,10 +16,6 @@ export default async function Header() {
   } else {
     pages = ["Profile", "Account"]
   }
-  // const pages = ["About", "Gallery", "PbPS", "Spooo", "MSLA", "Socials"];
-
 
   return <Nav pages={pages} user={user} />
 };
-
-

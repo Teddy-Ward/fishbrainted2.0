@@ -26,7 +26,7 @@ const ThemeSwitch = () => {
 
   return (
     <>
-    <div className="absolute right-0" >
+    <div className="absolute right-8" >
             {/* When the theme is dark, hide this div */}
       <div data-hide-on-theme="dark">
         <Image
