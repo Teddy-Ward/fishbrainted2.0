@@ -1,18 +1,11 @@
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation';
-import AccountForm from './account-form'
+import Posts from '../components/Blog/Posts';
 
-export default async function Account() {
+export default async function Blog() {
   const supabase = createServerComponentClient({ cookies })
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  if (!user) {
-    redirect('/sign-in');
-  }
 
   const {
     data: { session },
@@ -20,7 +13,7 @@ export default async function Account() {
 
   return (
     <>
-        <AccountForm session={session} />
+    <Posts session={session}/>
     </>
 
   )
