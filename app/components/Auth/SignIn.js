@@ -74,9 +74,9 @@ const SignIn = () => {
         )}
       </Formik>
       {errorMsg && <div className="text-red-600">{errorMsg}</div>}
-      <Link href="/sign-up" className="link w-full">
+      {/* <Link href="/sign-up" className="link w-full">
         Don&apos;t have an account? Sign Up.
-      </Link>
+      </Link> */}
     </div>
   );
 };

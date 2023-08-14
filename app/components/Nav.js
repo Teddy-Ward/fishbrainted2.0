@@ -30,6 +30,9 @@ const Nav = ({pages, user}) => {
           <li>
             <Link href="/">Home</Link>
           </li>
+          <li>
+            <Link href="/blog">Blog</Link>
+          </li>
           {pages.map((page, i) => (
             <li key={i}>
               <Link href={"/" + page.toLowerCase()}>{page}</Link>

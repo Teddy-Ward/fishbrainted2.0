@@ -14,7 +14,7 @@ export default async function Header() {
   if (!user) {
     pages = ["Login"];
   } else {
-    pages = ["Profile", "Account", "Blog"]
+    pages = ["Profile", "Account"]
   }
 
   return <Nav pages={pages} user={user} />
