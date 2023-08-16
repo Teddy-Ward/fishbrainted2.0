@@ -6,26 +6,22 @@
   /* Your default theme */
   --background: white;
   --foreground: black;
+  --navbackground: #acacac;
   --shadow: #888888;
   text-align: center;
   overflow-y: auto;
-  scrollbar-gutter: stable;
+
 }
 
 [data-theme='dark'] {
-  --background: black;
+  --background: rgb(27, 27, 27);
   --foreground: white;
+  --navbackground: #383838;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-  
+  color: rgb(var(--foreground));
+  background: var(--background);
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -43,9 +39,12 @@ main {
   top: 0;
   left: 0;
   width: 100vw;
+  height: 30px;
   z-index: 999;
-  background-color: var(--background);
+  background-color: var(--navbackground);
   box-shadow: 0px 7px var(--brand-primary-color);
+  padding-top: 2px;
+  padding-left: 10px;
 }
 
 .header ul {
@@ -126,7 +125,7 @@ main {
   }
 
   .link {
-    @apply custom-focus rounded-md font-semibold text-slate-400;
+    @apply rounded-md font-semibold text-gray-600 hover:text-gray-400;
   }
 
   .row {

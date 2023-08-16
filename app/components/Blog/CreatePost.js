@@ -1,10 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
+import { stringify } from "postcss";
 
 export default function CreatePost() {
   const [category, setCategory] = useState("");
   const [title, setTitle] = useState("");
+  const [slug_title,  setSlug_title] = useState("");
   const [tagline, setTagline] = useState("");
   const [image_url, setImage_url] = useState("");
   const [date, setDate] = useState("");
@@ -38,6 +40,7 @@ export default function CreatePost() {
         .insert({
           category: category,
           title: title,
+          slug_title: slug_title,
           tagline: tagline,
           image_url: image_url,
           date: date,
@@ -100,6 +103,19 @@ export default function CreatePost() {
     console.log(event.target.value);
   };
 
+  function slugify(input) {
+    let slug = input.toString();
+    const mySlug = slug
+      .toLowerCase()
+      .trim()
+      .replace(/[^\w\s-]/g, " ")
+      .replace(/[\s_-]+/g, "-")
+      .replace(/^-+|-+$/g, " ");
+
+    setString_title(mySlug)
+    setTitle(input)
+  }
+
   return (
     <div className="card">
       <div className="grid grid-cols-3 gap-4 w-full text-left">
@@ -129,7 +145,7 @@ export default function CreatePost() {
             type="text"
             name="title"
             value={title || ""}
-            onChange={(e) => setTitle(e.target.value)}
+            onChange={(e) => slugify(e.target.value)}
           />
         </div>
         <div>

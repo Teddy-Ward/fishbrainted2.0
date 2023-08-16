@@ -2,6 +2,8 @@
 import { useState, useEffect } from "react";
 import { supabase } from "../supabaseClient";
 import EditPost from "./EditPost";
+import Link from "next/link";
+
 
 
 export default function Posts({ session }) {
@@ -35,6 +37,18 @@ export default function Posts({ session }) {
       myDate[2] + "-" + myDate[1] + "-" + myDate[0] )
   }
 
+function postLink(input) {
+  let link = "blog/" + input
+  return link
+}
+
+function trimmedContent(input) {
+  let string = input;
+  let length = 7;
+  let trimmedString = string.substring(0, length)
+  return trimmedString + "..."
+}
+
   return (
     <>
       {session ? (
@@ -50,12 +64,15 @@ export default function Posts({ session }) {
       ) : (
         <div>
           {posts.map((posts) => (
-            <div className="card rounded-none w-4/5 text-left">
+            <div className="card rounded-none w-4/5 text-left pb-4">
               <div className="w-full">
                 <h2 className="py-1">{posts.title}</h2>
                 <h3>{posts.tagline}</h3>
-                <p>{posts.content}</p>
-                <div className="text-right">{formatDate(posts.date)}</div>
+                <p className="">{trimmedContent(posts.content)}</p>
+                <div className="text-right">{formatDate(posts.date)}</div>                
+                <div className="text-center pt-2">
+                <Link href={postLink(posts.slug_title)} className="link font-normal">Read More</Link>
+                </div>
               </div>
             </div>
           )).reverse()}

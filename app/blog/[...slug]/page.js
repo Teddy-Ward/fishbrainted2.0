@@ -11,7 +11,7 @@ export default function Page({ params }) {
   const [loading, setLoading] = useState("loading")
   const [classes, setClasses] = useState("hidden")
 
-  const name = slugify(params.slug)
+  const name = params.slug
 
   useEffect(() => {
     getPost();
@@ -19,7 +19,7 @@ export default function Page({ params }) {
 
   async function getPost() {
     try {
-      const { data, error } = (await supabase.from("blog").select("*").eq("title", name));
+      const { data, error } = (await supabase.from("blog").select("*").eq("slug_title", name));
       if (error) throw error;      
       if (data != null) {
         setPost(data);
@@ -33,23 +33,7 @@ export default function Page({ params }) {
     }
   }
 
-  function slugify(input) {
-    let slug = input.toString();
-    const mySlug = slug
-      .toLowerCase()
-      .trim()
-      .replace(/[^\w\s-]/g, "-")
-      .replace(/[\s_-]+/g, " ")
-      .replace(/^-+|-+$/g, "-");
 
-    const mySentence = mySlug;
-
-    const finalSentence = mySentence.replace(/(^\w{1})|(\s+\w{1})/g, (letter) =>
-      letter.toUpperCase()
-    );
-
-    return finalSentence;
-  }
 
 
   return (
