@@ -26,16 +26,23 @@ export default function PostCard(props) {
 
   return (
     <>
-    <div className="card w-4/5 mb-10 rounded-none text-left">
-      <div className="w-full">
+    <div className=" w-4/5 mb-10 mx-auto ">
+      <div className="card w-full mx-auto rounded-none text-left">
+        <div className="w-full">
         <h2 className="py-0">{title}</h2>
+        <span className="banner"></span>
         <div>{category} - {tagline}</div>
         {image_url ? (<img src={imageLink} className="w-1/2 mx-auto"/>) : ("") }
         <div>{content}</div>
-        <div>{formatDate(date)}</div>
-      </div>
+        <div className="text-right">{formatDate(date)}</div>
+        </div>
+
+      </div>    
+      <div className="stroke">
+      <a href="/blog" className="p-2 w-16 mt-5 ml-auto text-center">Back</a>
+    </div>
     </div> 
-    <button className="button-inverse" onClick={() => (window.location = "/blog/")}>Go Back</button>
+
     </>
     
   )

@@ -1,32 +1,24 @@
 "use client";
 import Link from "next/link";
-import ThemeSwitch from "./ThemeSwitch";
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
-
-const Nav = ({pages, user}) => {
-
-  
-
+const Nav = ({ pages, user }) => {
   const classes = `header flex flex-row`;
 
   const supabase = createClientComponentClient();
 
+  async function handleSignOut() {
+    const { error } = await supabase.auth.signOut();
 
-    async function handleSignOut() {
-        const { error } = await supabase.auth.signOut();
-    
-        if (error) {
-          // eslint-disable-next-line no-console
-          console.error('ERROR:', error);
-        }
-      }
-  
+    if (error) {
+      // eslint-disable-next-line no-console
+      console.error("ERROR:", error);
+    }
+  }
 
   return (
     <>
-      <header className={classes}>
-        <ul>
+      {/* <ul>
           <li>
             <Link href="/">Home</Link>
           </li>
@@ -42,8 +34,41 @@ const Nav = ({pages, user}) => {
             <li onClick={handleSignOut}><Link href="/">Logout</Link></li> 
             : 
             "" }
-        </ul>
-        <ThemeSwitch />
+        </ul> */}
+      <header className="header pr-5">
+        <nav class="fill">
+          {user ? (
+            <ul>
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/blog">Blog</a>
+              </li>
+              <li>
+                <a href="/account">Account</a>
+              </li>
+              <li>
+                <a href="/profile">Profile</a>
+              </li>
+              <li>
+                <a href="#" onClick={handleSignOut}>Logout</a>
+              </li>
+            </ul>
+          ) : (
+            <ul>
+              <li>
+                <a href="/">Home</a>
+              </li>
+              <li>
+                <a href="/blog">Blog</a>
+              </li>
+              <li>
+                <a href="/login">Login</a>
+              </li>
+            </ul>
+          )}
+        </nav>
       </header>
     </>
   );

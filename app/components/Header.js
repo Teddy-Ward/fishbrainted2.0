@@ -11,11 +11,5 @@ export default async function Header() {
     data: { user },
   } = await supabase.auth.getUser();
 
-  if (!user) {
-    pages = ["Login"];
-  } else {
-    pages = ["Profile", "Account"]
-  }
-
-  return <Nav pages={pages} user={user} />
+  return <Nav user={user} />
 };
