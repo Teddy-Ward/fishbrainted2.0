@@ -112,7 +112,7 @@ export default function CreatePost() {
       .replace(/[\s_-]+/g, "-")
       .replace(/^-+|-+$/g, " ");
 
-    setString_title(mySlug)
+    setSlug_title(mySlug)
     setTitle(input)
   }
 

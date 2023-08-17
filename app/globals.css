@@ -4,7 +4,7 @@
 
 :root {
   /* Your default theme */
-  --background: white;
+  --background: rgb(202, 202, 202);
   --foreground: black;
   --navbackground: #232427;
   --shadow: #df8600;
@@ -12,6 +12,7 @@
   --card-shadow: #5873cc;
   text-align: center;
   overflow-y: auto;
+  --h1-color:#464952;
 
 }
 
@@ -20,6 +21,7 @@
   --foreground: white;
   --link-color-hover: white;
   --card-shadow: #df8600;
+  --h1-color:#dad8d8;
 }
 
 body {
@@ -68,7 +70,25 @@ main {
   display: none;
 }
 
+.theme-button {
+  position:fixed;
+  right:50px;
+  bottom:25px;
+}
 
+.theme-button:hover {
+  cursor: pointer;
+}
+
+.shadow {
+  box-shadow: 4px 6px var(--shadow);
+}
+
+.main-img {
+  width: auto;
+  min-height:320px;
+  object-fit: cover;
+}
 
 /*Footer */
 .footer {
@@ -76,6 +96,8 @@ main {
   bottom: 0;
   width: 100%;
   margin-top: auto;
+  color: slategray;
+  opacity: 0.5;
 }
 
 .card {
@@ -92,16 +114,26 @@ main {
   position: relative;
   bottom: 2rem;
 }
+
 .banner {
   display:inline-block;
-  width: 14em;
-  background: linear-gradient(to right, var(--shadow), white);    
-  height: 0.3rem;
+  width: 100%;
+  background: var(--shadow);   
+  height: 4px;
   position: relative;
-  bottom: 0.9rem;
+  bottom: 5px;
+}
+
+h1 {
+  color: var(--h1-color);
+  /* text-shadow: 1px 2px var(--shadow); */
 }
 
 @layer components {
+  h1 {
+    @apply text-4xl font-black text-gray-800;
+  }
+
   h2 {
     @apply py-4 text-4xl font-black text-gray-800;
   }
@@ -204,7 +236,7 @@ a:hover {
   content: '.';
   color: transparent;
   background: var(--shadow);
-  height: 1px;
+  height: 4px;
 }
 .stroke  a:hover:after {
   width: 100%;

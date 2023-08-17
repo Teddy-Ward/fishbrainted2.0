@@ -41,6 +41,10 @@ export default function PostCard(props) {
       <div className="stroke">
       <a href="/blog" className="p-2 w-16 mt-5 ml-auto text-center">Back</a>
     </div>
+    <div>foobar</div>
+    <div>foobar</div>
+    <div>foobar</div>
+    <div>foobar</div>
     </div> 
 
     </>

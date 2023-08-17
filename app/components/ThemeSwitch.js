@@ -26,9 +26,9 @@ const ThemeSwitch = () => {
 
   return (
     <>
+      <div className="theme-button">
 
-            {/* When the theme is dark, hide this div */}
-      <div data-hide-on-theme="dark">
+      <div data-hide-on-theme="light" >
         <Image
           src="/light.png"
           alt="light"
@@ -39,8 +39,7 @@ const ThemeSwitch = () => {
 
       </div>
 
-      {/* When the theme is light, hide this div */}
-      <div data-hide-on-theme="light">
+      <div data-hide-on-theme="dark">
         <Image
           src="/dark.png"
           alt="dark"
@@ -49,7 +48,7 @@ const ThemeSwitch = () => {
           onClick={themebutton}
         />
       </div>
-    
+    </div>
 
     </>
   );
