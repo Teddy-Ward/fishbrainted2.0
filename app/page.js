@@ -1,62 +1,60 @@
 "use client";
-import { useState, useEffect } from "react";
+
 import { supabase } from "./components/supabaseClient";
-
-
+import { useState, useEffect } from "react";
 import MainPost from "./components/MainPost";
 import PannelPost from "./components/PannelPost";
 
-export default function Home() {
-  const [posts, setPosts] = useState([]);
-  const [uploading, setUploading] = useState(false);
-  const [loading, setLoading] = useState(false);
+export default function Page() {
+  const [post, setPost] = useState([""]);
+  const [loading, setLoading] = useState("loading");
+  const [classes, setClasses] = useState("hidden");
 
   useEffect(() => {
-    getPosts();
+    getPost();
   }, []);
 
-  async function getPosts() {
+  async function getPost() {
     try {
       const { data, error } = await supabase
         .from("blog")
         .select("*")
-        .order("date");
+        .order("created_at", { ascending: false })
+        .range(0, 3);
       if (error) throw error;
       if (data != null) {
-        setPosts(data);
+        setPost(data);
       }
     } catch (error) {
       alert(error.message);
+    } finally {
+      setLoading("Not Found");
+      setClasses("block");
     }
   }
-  
-  function formatDate(input) {
-    let date = input
-    const myDate = date.split("-")
-    return (
-      myDate[2] + "-" + myDate[1] + "-" + myDate[0] )
-  }
 
-function postLink(input) {
-  let link = "blog/" + input
-  return link
-}
-
-function trimmedContent(input) {
-  let string = input;
-  let length = 7;
-  let trimmedString = string.substring(0, length)
-  return trimmedString + "..."
-}
-
-console.log(posts)
+  console.log(post);
 
   return (
-    <div className="pt-20">
-      <div className="max-w-5xl mx-auto h-80">
-        <MainPost />
-        <PannelPost />
+    <>
+    <div className="pt-10 max-w-5xl mx-auto ">
+
+
+      {post[0] ? (
+        <>
+          <MainPost post={post[0]} />
+          <div className="grid grid-cols-3 gap-8 w-full">
+            <PannelPost post={post[1]} />
+            <PannelPost post={post[2]} />
+            <PannelPost post={post[3]} />
+          </div>
+        </>
+      ) : (
+        <>
+          <div>{loading}</div>
+        </>
+      )}    
       </div>
-    </div>
+    </>
   );
 }

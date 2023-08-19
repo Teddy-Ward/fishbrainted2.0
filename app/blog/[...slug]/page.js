@@ -40,7 +40,7 @@ export default function Page({ params }) {
     <>
      {post[0] ? (<PostCard post={post[0]} />) : (
      <>
-     <div>{loading}</div>
+     <div className="pt-20">{loading}</div>
      <div className={classes}>
       <Link href={"/"}>Go Back</Link>
      </div>

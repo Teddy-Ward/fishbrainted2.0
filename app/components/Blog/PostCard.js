@@ -2,8 +2,7 @@
 import { useState } from "react";
 import { supabase } from "../supabaseClient";
 
-
-const CDN = process.env.NEXT_PUBLIC_SUPABASE_IMAGES_CDN
+const CDN = process.env.NEXT_PUBLIC_SUPABASE_IMAGES_CDN;
 
 export default function PostCard(props) {
   const post = props.post;
@@ -16,38 +15,34 @@ export default function PostCard(props) {
   const [image_url, setImage_url] = useState(post.image_url);
 
   function formatDate(input) {
-    let date = input
-    const myDate = date.split("-")
-    return (
-      myDate[2] + "-" + myDate[1] + "-" + myDate[0] )
+    let date = input;
+    const myDate = date.split("-");
+    return myDate[2] + "-" + myDate[1] + "-" + myDate[0];
   }
 
-  const imageLink = CDN + image_url
+  const imageLink = CDN + image_url;
 
   return (
     <>
-    <div className=" w-4/5 mb-10 mx-auto ">
-      <div className="card w-full mx-auto rounded-none text-left">
-        <div className="w-full">
-        <h2 className="py-0">{title}</h2>
-        <span className="banner"></span>
-        <div>{category} - {tagline}</div>
-        {image_url ? (<img src={imageLink} className="w-1/2 mx-auto"/>) : ("") }
-        <div>{content}</div>
-        <div className="text-right">{formatDate(date)}</div>
+      <div className="max-w-5xl mb-10 mx-auto ">
+        <div className="card w-full mx-auto rounded-none text-left">
+          <div className="w-full">
+            <h2 className="py-0">{title}</h2>
+            <span className="banner"></span>
+            <div>
+              {category} - {tagline}
+            </div>
+            {image_url ? <img src={imageLink} className="w-1/2 mx-auto" /> : ""}
+            <div>{content}</div>
+            <div className="text-right">{formatDate(date)}</div>
+          </div>
         </div>
-
-      </div>    
-      <div className="stroke">
-      <a href="/blog" className="p-2 w-16 mt-5 ml-auto text-center">Back</a>
-    </div>
-    <div>foobar</div>
-    <div>foobar</div>
-    <div>foobar</div>
-    <div>foobar</div>
-    </div> 
-
+        <div className="stroke">
+          <a href="/blog" className="p-2 w-16 mt-5 ml-auto text-center">
+            Back
+          </a>
+        </div>
+      </div>
     </>
-    
-  )
+  );
 }
