@@ -7,7 +7,7 @@ import Link from "next/link";
 import Loading from "@/app/components/Loading";
 
 
-export default async function Page({ params }) {
+export default function Page({ params }) {
   const [post, setPost] = useState([""]);
   const [loading, setLoading] = useState("block")
   const [classes, setClasses] = useState("hidden")
