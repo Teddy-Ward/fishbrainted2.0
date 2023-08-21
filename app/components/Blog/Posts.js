@@ -67,7 +67,7 @@ export default function Posts({ session }) {
             Create Post
           </button>
           <div className="grid grid-cols-1 gap-2">
-            {posts.map((posts) => <EditPost posts={posts} />).reverse()}
+            {posts.map((posts) => <EditPost key={posts.id} posts={posts} />).reverse()}
           </div>         
         </>
       ) : (
@@ -75,7 +75,7 @@ export default function Posts({ session }) {
           <div className="max-w-5xl mx-auto h-64">
             {posts
               .map((posts) => (
-                <div className="grid grid-cols-2 gap-8 gap-y-0 w-full pb-20">
+                <div className="grid grid-cols-2 gap-8 gap-y-0 w-full pb-20" key={posts.id}>
                   <div className="row-span-3">
                   {!posts.image_url ? (<img src="random.png" className="shadow main-img" alt="random orange image"/>) : (<img src={imageLink(posts.image_url)} className="shadow main-img bg-[var(--link-color)]" alt="post image"/>)}
                   </div>

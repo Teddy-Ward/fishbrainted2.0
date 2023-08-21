@@ -16,7 +16,7 @@ export default function Page({ params }) {
 
   useEffect(() => {
     getPost();
-  }, []);
+  }, );
 
   async function getPost() {
     try {

@@ -56,13 +56,13 @@ export default function EditPost(props) {
   }
 
   const categoryList = [
-    { label: "Select", value: "" },
-    { label: "General", value: "General" },
-    { label: "Games", value: "Games" },
-    { label: "UK Politics", value: "Ukpol" },
-    { label: "Life", value: "Life" },
-    { label: "Opinion", value: "Opinion" },
-    { label: "Random", value: "Random" },
+    { id:1, label: "Select", value: "" },
+    { id:2, label: "General", value: "General" },
+    { id:3, label: "Games", value: "Games" },
+    { id:4, label: "UK Politics", value: "Ukpol" },
+    { id:5, label: "Life", value: "Life" },
+    { id:6, label: "Opinion", value: "Opinion" },
+    { id:7, label: "Random", value: "Random" },
   ];
 
   const listChange = (event) => {
@@ -101,7 +101,7 @@ export default function EditPost(props) {
               <label>Category</label>
               <select category={category} onChange={listChange}>
                 {categoryList.map((option) => (
-                  <option category={option.value}>{option.label}</option>
+                  <option key={option.id} category={option.value}>{option.label}</option>
                 ))}
               </select>
               <div></div>
