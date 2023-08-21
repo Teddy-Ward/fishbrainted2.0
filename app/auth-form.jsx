@@ -5,7 +5,7 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 
 export default function AuthForm() {
   const supabase = createClientComponentClient()
-
+  const redirect = `${requestUrl.origin}/auth/callback` 
   return (
     <Auth
     supabaseClient={supabase}
@@ -21,7 +21,7 @@ export default function AuthForm() {
     }}
     providers={[]}
 
-      redirectTo="http://localhost:3000/auth/callback"
+      redirectTo={redirect}
     />
   )
 }

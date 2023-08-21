@@ -6,7 +6,7 @@ import MainPost from "./components/MainPost";
 import PannelPost from "./components/PannelPost";
 import Loading from "./components/Loading";
 
-export default function Page() {
+export default async function Page() {
   const [post, setPost] = useState([""]);
   const [loading, setLoading] = useState("loading");
   const [classes, setClasses] = useState("hidden");

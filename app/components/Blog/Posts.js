@@ -7,7 +7,7 @@ import Link from "next/link";
 const CDN = process.env.NEXT_PUBLIC_SUPABASE_IMAGES_CDN
 
 
-export default function Posts({ session }) {
+export default async function Posts({ session }) {
   const [posts, setPosts] = useState([]);
   const [uploading, setUploading] = useState(false);
   const [loading, setLoading] = useState(false);
