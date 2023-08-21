@@ -1,12 +1,4 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  supabase: {
-    client: {
-        auth: {
-            persistSession: true //or true
-        }
-    }
-  }
-}
+const nextConfig = {}
 
 module.exports = nextConfig
