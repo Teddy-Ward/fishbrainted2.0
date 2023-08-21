@@ -17,7 +17,7 @@ export default function PostCard(props) {
   function formatDate(input) {
     let date = input;
     const myDate = date.split("-");
-    return myDate[2] + "-" + myDate[1] + "-" + myDate[0];
+    return myDate[2] + "/" + myDate[1] + "/" + myDate[0];
   }
 
   const imageLink = CDN + image_url;
@@ -33,7 +33,7 @@ export default function PostCard(props) {
               {category} - {tagline}
             </div>
             {image_url ? <img src={imageLink} className="w-1/2 mx-auto" /> : ""}
-            <div>{content}</div>
+            <div dangerouslySetInnerHTML={{__html: content}} />
             <div className="text-right">{formatDate(date)}</div>
           </div>
         </div>

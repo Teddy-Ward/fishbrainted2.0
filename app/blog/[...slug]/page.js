@@ -4,11 +4,12 @@ import { supabase } from "../../components/supabaseClient";
 import { useState, useEffect } from "react";
 import PostCard from '@/app/components/Blog/PostCard';
 import Link from "next/link";
+import Loading from "@/app/components/Loading";
 
 
 export default function Page({ params }) {
   const [post, setPost] = useState([""]);
-  const [loading, setLoading] = useState("loading")
+  const [loading, setLoading] = useState("block")
   const [classes, setClasses] = useState("hidden")
 
   const name = params.slug
@@ -28,7 +29,7 @@ export default function Page({ params }) {
     } catch (error) {
       alert(error.message); 
     } finally {
-      setLoading("Not Found")
+      setLoading("hidden")
       setClasses("block")
     }
   }
@@ -40,10 +41,14 @@ export default function Page({ params }) {
     <>
      {post[0] ? (<PostCard post={post[0]} />) : (
      <>
-     <div className="pt-20">{loading}</div>
+     <div className="pt-20">
+           <div className={loading}><Loading /></div>
      <div className={classes}>
+      <h2>Page Not Found</h2>
       <Link href={"/"}>Go Back</Link>
      </div>
+     </div>
+
      </>)}
     </>
 

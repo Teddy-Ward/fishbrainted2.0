@@ -34,7 +34,7 @@ export default function Posts({ session }) {
   function formatDate(input) {
     let date = input;
     const myDate = date.split("-");
-    return myDate[2] + "-" + myDate[1] + "-" + myDate[0];
+    return myDate[2] + "/" + myDate[1] + "" + myDate[0];
   }
 
   function postLink(input) {
@@ -66,7 +66,9 @@ export default function Posts({ session }) {
           >
             Create Post
           </button>
-          {posts.map((posts) => <EditPost posts={posts} />).reverse()}
+          <div className="grid grid-cols-1 gap-2">
+            {posts.map((posts) => <EditPost posts={posts} />).reverse()}
+          </div>         
         </>
       ) : (
         <div className="pt-20">
@@ -80,9 +82,11 @@ export default function Posts({ session }) {
                   <div className="text-left h-24 row-span-2">
                     <h1 className="drop-shadow-md">{posts.title}</h1>
                     <span className="banner"></span>
-                    <p className="text-left  ">{posts.tagline}</p>
+                    <div className="text-left ">
+                      <p className="opacity-50 pb-2">{posts.category} - {formatDate(posts.date)}</p>
+                    <p className="">{posts.tagline}</p>
+                    </div>
                   </div>
-
                   <div className="stroke bottom">
                     <a
                       href={postLink(posts.slug_title)}
@@ -94,7 +98,7 @@ export default function Posts({ session }) {
                 </div>
               ))
               .reverse()}
-          </div>{" "}
+          </div>
         </div>
       )}
     </>

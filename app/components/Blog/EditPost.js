@@ -1,6 +1,8 @@
 "use client";
 import { useState } from "react";
 import { supabase } from "../supabaseClient";
+import Editor from "./Editor";
+import "react-quill/dist/quill.snow.css";
 
 export default function EditPost(props) {
   const post = props.posts;
@@ -130,7 +132,7 @@ export default function EditPost(props) {
               />
               <div></div>
               <label className="col-span-3 text-center">Content</label>
-              <textarea
+              {/* <textarea
                 id="content"
                 className="input block mx-auto rounded-none col-span-3"
                 type="text"
@@ -138,9 +140,12 @@ export default function EditPost(props) {
                 rows="20"
                 defaultValue={post.content}
                 onChange={(e) => setContent(e.target.value)}
-              />
+              /> */}
+              <div className="col-span-3">
+                <Editor value={content} onChange={setContent} />
+              </div>
               <button
-                className="button-inverse w-full col-span-3"
+                className="button-inverse w-full col-span-3 mt-6"
                 onClick={() => updatePost()}
                 disabled={loading}
               >

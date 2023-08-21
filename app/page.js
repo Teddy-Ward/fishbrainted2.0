@@ -4,6 +4,7 @@ import { supabase } from "./components/supabaseClient";
 import { useState, useEffect } from "react";
 import MainPost from "./components/MainPost";
 import PannelPost from "./components/PannelPost";
+import Loading from "./components/Loading";
 
 export default function Page() {
   const [post, setPost] = useState([""]);
@@ -51,7 +52,7 @@ export default function Page() {
         </>
       ) : (
         <>
-          <div>{loading}</div>
+          <div><Loading /></div>
         </>
       )}    
       </div>
